@@ -51,7 +51,19 @@ $(document).ready(function () {
 
 		// DELETE AREA
 		}else if(param =='del'){
-			$("#ModalTitle").text("HAPUS EUY");
+			var ids = getHashUrl()['id'];
+			$("#ModalTitle").text("DELETE");
+			$("#btnSave").text("delete");
+			$("form").hide();
+			$("#delabel").text("Are you sure to delete it?");
+			$("#btnSave").click(function () {
+				var data = { id: ids};
+				console.log(data);
+				sendData(data, 'delete');
+				$('#myModal').modal('hide');
+				location.hash = '';
+				location.reload();
+			});
 		}
 	});
 
@@ -116,7 +128,7 @@ function getOne(id) {
 		}
 	});
 }
-function sendData(datas,apa) {
+function sendData(datas, apa) {
 	$.ajax('http://dayuss-pc/crud_ajax/index.php/getdata/' + apa, {
 		type: 'POST',
 		dataType: 'json',
@@ -126,6 +138,7 @@ function sendData(datas,apa) {
 		}
 	});
 }
+
 
 
 // FUNCTION FUNCTION PENDUKUNG

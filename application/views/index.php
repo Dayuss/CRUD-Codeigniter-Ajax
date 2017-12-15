@@ -41,8 +41,9 @@
 				<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-				<form>
 					<div class="modal-body">
+						<p id='delabel'></p>
+				<form>
 						<div class="form-group">
 							<label for="exampleInputFile">Nim</label>
 							<input type="text" class='form-control' id='NIM' name='NIM'>
@@ -61,11 +62,11 @@
 							<input type="hidden" class='form-control' id='ID' name='ID'>
 						</div>
 					</div>
+				</form>
 					<div class="modal-footer">
 						<button type="button" id='btnclose' class="btn btn-secondary" data-dismiss="modal">Close</button>
 						<button type="button" id='btnSave' class="btn btn-primary">Save changes</button>
 					</div>
-				</form>
 			</div>
 		</div>
 		</div>
