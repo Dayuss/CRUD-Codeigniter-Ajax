@@ -34,4 +34,17 @@ class Getdata extends CI_Controller {
 		}
 		echo json_encode($result);
 	}
+
+	public function update(){
+		$data = $this->input->post(null,true);
+		$id = $data['id'];
+		unset($data['id']);
+		$msk = $this->dbs->update($data,array("id_mhs"=>$id));
+		if($msk){
+			$result = array("status"=>'asup');
+		}else{
+			$result = array("status"=>'kaga asup');
+		}
+		echo json_encode($result);
+	}
 }

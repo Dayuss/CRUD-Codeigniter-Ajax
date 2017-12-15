@@ -11,6 +11,7 @@ $(document).ready(function () {
 
 		// ADD AREA
 		if(param == 'add'){
+			$("#ID").hide();
 			$("#ModalTitle").text("ADD EUY");
 			$("#btnSave").click(function () {
 				var data = {
@@ -19,9 +20,8 @@ $(document).ready(function () {
 					jurusan : $("#JURUSAN").val(),
 					alamat	: $("#ALAMAT").val()
 				};
-				var dataJson = JSON.stringify(data);
-				console.log(dataJson);
-				insertData(data,'insert');
+				// console.log(data);
+				sendData(data,'insert');
 				$('#myModal').modal('hide');
 				location.hash = '';
 				location.reload();
@@ -32,12 +32,21 @@ $(document).ready(function () {
 
 			var id = getHashUrl()['id'];
 			$("#ModalTitle").text("EDIT EUY");
-			$("btnSave").text("update");
+			$("#btnSave").text("update");
 			getOne(id);
-
-
 			$("#btnSave").click(function () {
-
+				var data = {
+					id: $("#ID").val(),
+					nim: $("#NIM").val(),
+					nama: $("#NAMA").val(),
+					jurusan: $("#JURUSAN").val(),
+					alamat: $("#ALAMAT").val()
+				};
+				// console.log(data);
+				sendData(data, 'update');
+				$('#myModal').modal('hide');
+				location.hash = '';
+				location.reload();
 			});
 
 		// DELETE AREA
@@ -98,6 +107,7 @@ function getOne(id) {
 		success: function (data) {
 			$.each(data, function (i, item) {
 				$("#NIM").val(item.nim);
+				$("#ID").val(item.id_mhs);
 				$("#NAMA").val(item.nama);
 				$("#JURUSAN").val(item.jurusan);
 				$("#ALAMAT").val(item.alamat);
@@ -106,7 +116,7 @@ function getOne(id) {
 		}
 	});
 }
-function insertData(datas,apa) {
+function sendData(datas,apa) {
 	$.ajax('http://dayuss-pc/crud_ajax/index.php/getdata/' + apa, {
 		type: 'POST',
 		dataType: 'json',

@@ -58,6 +58,7 @@
 						<div class="form-group">
 							<label for="exampleInputFile">Alamat</label>
 							<input type="text" class='form-control' id='ALAMAT' name='ALAMAT'>
+							<input type="hidden" class='form-control' id='ID' name='ID'>
 						</div>
 					</div>
 					<div class="modal-footer">
